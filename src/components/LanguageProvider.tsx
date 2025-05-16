@@ -1,9 +1,5 @@
-
 import { createContext, useContext, useState, useEffect } from "react";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import enTranslations from "../locales/en";
-import esTranslations from "../locales/es";
+import i18n from "../i18n";
 
 type Language = "en" | "es";
 
@@ -28,20 +24,10 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   });
 
   useEffect(() => {
-    i18n
-      .use(initReactI18next)
-      .init({
-        resources: {
-          en: { translation: enTranslations },
-          es: { translation: esTranslations }
-        },
-        lng: language,
-        fallbackLng: "en",
-        interpolation: {
-          escapeValue: false
-        }
-      });
-
+    // Only change the language if it's different from current
+    if (i18n.language !== language) {
+      i18n.changeLanguage(language);
+    }
     localStorage.setItem("language", language);
   }, [language]);
 
