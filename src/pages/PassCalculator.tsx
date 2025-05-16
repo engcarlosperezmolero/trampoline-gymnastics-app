@@ -1,4 +1,3 @@
-
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DndProvider } from "react-dnd";
@@ -9,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { DraggableElement } from "@/components/DraggableElement";
 import { calculateElementDifficulty, calculatePassDifficulty } from "@/utils/scoringUtils";
+import { PlusCircle } from "lucide-react";
 
 interface Element {
   id: string;
@@ -110,8 +110,10 @@ const PassCalculator = () => {
           <Button 
             onClick={handleAddElement}
             disabled={elements.length >= getMaxElements()}
+            size="icon"
+            className="h-10 w-10"
           >
-            Add
+            <PlusCircle className="h-5 w-5" />
           </Button>
         </div>
         

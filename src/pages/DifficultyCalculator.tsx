@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { calculateElementDifficulty, quickExamples } from "@/utils/scoringUtils";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const DifficultyCalculator = () => {
   const { t } = useTranslation();
@@ -56,17 +62,30 @@ const DifficultyCalculator = () => {
         
         <div className="space-y-2">
           <h3 className="font-medium">{t("quickExamples")}</h3>
-          <div className="flex flex-wrap gap-2">
-            {quickExamples.map((example) => (
-              <Button
-                key={example.code}
-                variant="outline"
-                onClick={() => handleQuickExample(example.code)}
-                className="bg-accent hover:bg-accent/80"
-              >
-                {example.code}
-              </Button>
-            ))}
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {quickExamples.map((example) => (
+                  <CarouselItem key={example.code} className="basis-1/3 md:basis-1/4 lg:basis-1/5">
+                    <Button
+                      variant="outline"
+                      onClick={() => handleQuickExample(example.code)}
+                      className="bg-accent hover:bg-accent/80 w-full"
+                    >
+                      {example.code}
+                    </Button>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="-left-4 h-8 w-8" />
+              <CarouselNext className="-right-4 h-8 w-8" />
+            </Carousel>
           </div>
         </div>
         

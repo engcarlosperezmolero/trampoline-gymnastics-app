@@ -1,16 +1,19 @@
-
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "./ThemeProvider";
 import { useLanguage } from "./LanguageProvider";
 import { Sun, Moon, Calculator, ListChecks, MessageCircle } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Layout = () => {
   const { theme, setTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
   const { t } = useTranslation();
   const isMobile = useIsMobile();
+  const location = useLocation();
+  
+  const currentPath = location.pathname === "/" ? "/difficulty" : location.pathname;
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -50,37 +53,32 @@ const Layout = () => {
 
       {!isMobile ? (
         <nav className="bg-muted py-2 px-6 border-b">
-          <div className="flex space-x-1 max-w-4xl mx-auto">
-            <NavLink
-              to="/difficulty"
-              className={({ isActive }) =>
-                `px-4 py-2 rounded-md ${
-                  isActive ? "bg-primary text-primary-foreground" : "hover:bg-accent"
-                }`
-              }
-            >
-              {t("difficultyCalculator")}
-            </NavLink>
-            <NavLink
-              to="/pass"
-              className={({ isActive }) =>
-                `px-4 py-2 rounded-md ${
-                  isActive ? "bg-primary text-primary-foreground" : "hover:bg-accent"
-                }`
-              }
-            >
-              {t("passCalculator")}
-            </NavLink>
-            <NavLink
-              to="/feedback"
-              className={({ isActive }) =>
-                `px-4 py-2 rounded-md ${
-                  isActive ? "bg-primary text-primary-foreground" : "hover:bg-accent"
-                }`
-              }
-            >
-              {t("feedback")}
-            </NavLink>
+          <div className="max-w-4xl mx-auto">
+            <Tabs value={currentPath} className="w-full">
+              <TabsList className="w-fit grid grid-cols-3 gap-1">
+                <TabsTrigger
+                  value="/difficulty"
+                  className="px-4 py-2"
+                  asChild
+                >
+                  <NavLink to="/difficulty">{t("difficultyCalculator")}</NavLink>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="/pass"
+                  className="px-4 py-2"
+                  asChild
+                >
+                  <NavLink to="/pass">{t("passCalculator")}</NavLink>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="/feedback"
+                  className="px-4 py-2"
+                  asChild
+                >
+                  <NavLink to="/feedback">{t("feedback")}</NavLink>
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
           </div>
         </nav>
       ) : null}
