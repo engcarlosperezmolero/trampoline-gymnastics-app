@@ -1,11 +1,11 @@
 
 const translations = {
-  appName: "Puntuación de Trampolín",
-  difficultyCalculator: "Calculadora de Dificultad",
-  passCalculator: "Calculadora de Pases",
+  appName: "Puntaje de Trampolín",
+  difficultyCalculator: "Calculo de Dificultad",
+  passCalculator: "Calculo de Pases",
   feedback: "Comentarios",
   trampoline: "Trampolín",
-  doubleMini: "Mini Doble",
+  doubleMini: "Doble Mini",
   calculate: "Calcular",
   reset: "Reiniciar",
   currentScore: "Puntuación Actual",
