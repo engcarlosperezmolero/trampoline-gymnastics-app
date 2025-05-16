@@ -7,9 +7,9 @@ import { Sun, Moon, Calculator, ListChecks, MessageCircle } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Layout = () => {
-  const { t } = useTranslation();
   const { theme, setTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation();
   const isMobile = useIsMobile();
 
   const toggleTheme = () => {

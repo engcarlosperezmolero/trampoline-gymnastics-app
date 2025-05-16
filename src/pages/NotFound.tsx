@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 
 const NotFound = () => {
-  const { t } = useTranslation();
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     console.error(
