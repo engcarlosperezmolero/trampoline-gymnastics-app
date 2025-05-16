@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { DraggableElement } from "@/components/DraggableElement";
 import { calculateElementDifficulty, calculatePassDifficulty } from "@/utils/scoringUtils";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, GripVertical } from "lucide-react";
 
 interface Element {
   id: string;

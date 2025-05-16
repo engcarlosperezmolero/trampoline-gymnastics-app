@@ -1,6 +1,6 @@
-
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import { GripVertical } from "lucide-react";
 
 interface DraggableElementProps {
   id: string;
@@ -90,7 +90,14 @@ export const DraggableElement = ({ id, index, moveElement, children }: Draggable
       className="cursor-move" 
       data-handler-id={handlerId}
     >
-      {children}
+      <div className="flex items-center">
+        <div className="flex-shrink-0 mr-2 text-muted-foreground">
+          <GripVertical size={18} />
+        </div>
+        <div className="flex-grow">
+          {children}
+        </div>
+      </div>
     </div>
   );
 };
